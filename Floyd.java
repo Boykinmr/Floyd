@@ -41,6 +41,7 @@ public class Floyd
         
         int tempWeight;
         for (int d = 0; d < numOfVerts; d++){
+            System.out.println();
             System.out.println(d + 1 + ": ");
             for (int x = 0; x < numOfVerts; x++){
                 
@@ -90,7 +91,6 @@ public class Floyd
         System.out.println("[2] load data from a file");
         System.out.println("[3] end program");
         
-        //Scanner typed = new Scanner (System.in);
         int choice = Integer.parseInt( floyd1.typed.nextLine() );
         
         if( choice == 1 ) {
@@ -104,13 +104,38 @@ public class Floyd
         }
         
         floyd1.createArray();
-        //for( int graphIteration = 0; graphIteration < num
+        floyd1.firstPrint();
         floyd1.chooseVertex();
+    }
+    
+    public void firstPrint() {
+        int y, x;
+        String endComma = "\t|  ";
+        
+        System.out.println("\n0:");
+        for(x = 0; x < numOfVerts; x++) {
+            
+            for(y = 0; y < numOfVerts; y++) {
+                //
+                if( weight[x][y] == -1 ){
+                    System.out.print ("-" + endComma);
+                } else {
+                    System.out.print (weight[x][y] + endComma);
+                }
+            }
+            System.out.println();
+            for(y = 0; y < numOfVerts; y++) {
+                System.out.print ("  " + interVert[x][y] + endComma );
+            }
+            System.out.println();
+            System.out.println("-----------------------------------------");
+        }
+        
+        
     }
     
     public void manuallyEnterArray () {
         System.out.print("Enter the number of vertices in this algorythm: ");
-        //Scanner typed = new Scanner( System.in );
         numOfVerts = Integer.parseInt( typed.nextLine() );
         
         inputsParse = new String[ numOfVerts ];
@@ -125,8 +150,8 @@ public class Floyd
     public void loadArray () {
         //
         System.out.print("Please type the name of the file (with .txt) to load: ");
-        //Scanner typed = new Scanner( System.in );
         String fileName = typed.nextLine();
+        
         String readLine;
         BufferedReader inputFile;
         int index = 0;
